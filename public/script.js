@@ -17,12 +17,13 @@ async function fetchPic(){
    const res=await fetch('/api/all?url='+encodeURIComponent(link));
    const data=await res.json();
    if(data.profile_picture?.hd){
-     resBox.innerHTML=`<img src="${data.profile_picture.hd}"><br>
-     <a href="${data.profile_picture.hd}" download><button>Download</button></a>`;
-   }else{
-     resBox.innerText='Image not found';
-   }
- }catch{
-   resBox.innerText='Error';
+  resBox.innerHTML = `
+    <img src="${data.profile_picture.hd}"><br>
+    <button onclick="forceDownload('${data.profile_picture.hd}')">
+      Download
+    </button>
+  `;
+}
+Box.innerText='Error';
  }
 }
